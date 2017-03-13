@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { AngularFireModule } from 'angularfire2';
+import { FirebaseService } from './services/firebase.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,6 +14,13 @@ import { ListingComponent } from './components/listing/listing.component';
 import { AddListingComponent } from './components/add-listing/add-listing.component';
 import { EditListingComponent } from './components/edit-listing/edit-listing.component';
 
+export const firebaseConfig = {
+  apiKey: 'AIzaSyBE-tOq1qWMWzFEiytd4qpiWLzDbjKf_Dw',
+  authDomain: 'proplistings-88daa.firebaseapp.com',
+  databaseURL: 'https://proplistings-88daa.firebaseio.com',
+  storageBucket: 'proplistings-88daa.appspot.com',
+  messagingSenderId: '619950324912'
+};
 
 const appRoutes: Routes = [
     {path:'', component:HomeComponent},
@@ -32,9 +41,10 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    AngularFireModule.initializeApp(firebaseConfig),
+    RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
