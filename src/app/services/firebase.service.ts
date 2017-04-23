@@ -7,7 +7,7 @@ export class FirebaseService {
   constructor(private af: AngularFire) { }
 
   getListings() {
-      this.listings = this.af.database.list('/listings') as FirebaseListObservable<Listing[]>
+      this.listings = this.af.database.list('/listings/listings') as FirebaseListObservable<Listing[]>
       return this.listings;
   }
 
