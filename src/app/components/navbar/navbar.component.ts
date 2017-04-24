@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFire} from 'angularfire2';
+import {FlashMessagesService} from 'angular2-flash-messages';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -7,7 +8,11 @@ import {AngularFire} from 'angularfire2';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public af:AngularFire) { }
+  constructor(
+      public af:AngularFire,
+      public flashMessage: FlashMessagesService
+
+  ) { }
 
   ngOnInit() {
   }
@@ -18,6 +23,7 @@ export class NavbarComponent implements OnInit {
 
   logout(){
       this.af.auth.logout();
+      this.flashMessage.show('You are logout', {cssClass: 'alert-success', timeout: 3000});
   }
 
 }
